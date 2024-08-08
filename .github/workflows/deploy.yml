@@ -1,4 +1,4 @@
-name: Deploy Infrastructure and Application
+choname: Deploy Infrastructure and Application
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
             cd application
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            echo ${{ secrets.DOCKER_USERNAME }} | docker login -u ${{ secrets.DOCKER_PASSWORD }} --password-stdin
             docker build -t ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest .
             docker push ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest
     
