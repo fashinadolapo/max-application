@@ -9,6 +9,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+  REQUIREMENTS_FILE: ./application/requirements.txt
 
 jobs:
   build-and-push-image:
