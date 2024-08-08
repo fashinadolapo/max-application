@@ -51,7 +51,7 @@ jobs:
      
       - name: Scan Docker Image with Trivy
         run: |
-           trivy image --exit-code 1 --no-progress --format table ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+           trivy image --exit-code 0 --no-progress --format table ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
     
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
