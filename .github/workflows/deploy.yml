@@ -15,7 +15,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           cd application
-          docker build -t my-python-app .
+          docker build -t dolapofashina/my-python-app:latest .
           docker tag my-python-app ${{ secrets.DOCKER_USERNAME }}/my-python-app
           docker push ${{ secrets.DOCKER_USERNAME }}/my-python-app
 
