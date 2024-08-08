@@ -14,11 +14,11 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          cd application
-          docker build -t dolapofashina/my-python-app:latest .
-          docker tag my-python-app ${{ secrets.DOCKER_USERNAME }}/my-python-app
-          docker push ${{ secrets.DOCKER_USERNAME }}/my-python-app
-
+            cd application
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest .
+            docker push ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest
+    
       - name: Deploy Application
         run: |
           cd application
