@@ -23,6 +23,8 @@ jobs:
           docker build -t ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest .
           trivy image --exit-code 1 --no-progress --format json ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/my-python-app:latest
+          env:
+            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
 
     
       - name: Deploy Application
