@@ -27,9 +27,6 @@ jobs:
       - name: Setup Docker
         uses: docker/setup-docker@v2
 
-      - name: Set up Docker CLI
-        uses: docker/setup-docker@v2
-
       - name: Install AWS CLI
         run: |
           curl "https://d1uj6qtbmh3dt5.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -61,7 +58,7 @@ jobs:
 
       - name: Build and push Docker image
         id: push
-        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
