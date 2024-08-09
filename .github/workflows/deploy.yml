@@ -9,7 +9,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-  REQUIREMENTS_FILE: ./application/requirements.txt
+  REQUIREMENTS_FILE: ./requirements.txt
 
 jobs:
   build-and-push-image:
@@ -64,7 +64,7 @@ jobs:
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
           context: .
-          file: ./application/Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -85,9 +85,9 @@ jobs:
       - name: Deploy to EKS
         run: |
           aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
-          kubectl apply -f ./k8s/deployment.yaml
-          kubectl apply -f ./k8s/service.yaml
-          kubectl apply -f ./k8s/ingress.yaml
+          kubectl apply -f ./deployment.yaml
+          kubectl apply -f ./service.yaml
+          kubectl apply -f ./ingress.yaml
       
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
